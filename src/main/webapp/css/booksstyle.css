@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+/* Set the background image for the entire page */
+body {
+    background: 
+        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
+        url('/images/bookstore.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: large;
+    color: rgb(74, 10, 74);
+    margin: 0;
+    padding: 20px;
+}
+
+
+/* Container styling */
+#whole {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2rem;
+    min-height: 60vh;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.6); /* Light overlay for readability */
+    padding: 20px;
+    border-radius: 0.5cm;
+    border:solid rgb(229, 96, 229);
+    box-shadow: 0 0 20px;
+}
+
+/* Headings */
+h1, h3 {
+    margin: 0;
+}
+
+/* Table styling */
+#table {
+    width: 80%;
+    border-collapse: collapse;
+    background-color: rgba(252, 127, 252, 0.815);
+    border-radius: 0.5cm;
+    overflow: hidden;
+    border:solid rgb(229, 96, 229);
+    box-shadow: 0 0 20px;
+}
+
+#table th, #table td {
+    padding: 15px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgb(199, 67, 199);
+}
+
+#table thead {
+    background-color: rgb(246, 181, 246);
+    color: rgb(74, 10, 74);
+    font-weight: bold;
+}
+
+#table tbody tr:hover {
+    background-color: rgb(246, 181, 246);
+}
+
+/* Navigation bar */
+#navi {
+    display: flex;
+    justify-content: center;
+    padding: 15px 25px;  
+    border-radius: 0.1cm;     
+}
+
+/* Links */
+nav a, a {
+    margin-left: 15px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.2cm;
+    padding: 10px;
+    background-color: rgb(246, 181, 246);
+    color: rgb(74, 10, 74);
+}
