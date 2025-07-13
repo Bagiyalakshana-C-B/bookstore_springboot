@@ -37,7 +37,7 @@ public class BookStoreController {
 	@GetMapping("/login")
 	public String showlogin(HttpServletRequest request) {
 		request.setAttribute("action","login");
-		return "login";
+		return "pages/login";
 	}
 	
 	@PostMapping("/login")
@@ -45,18 +45,18 @@ public class BookStoreController {
 		UserModel user = userrepo.findByUsername(username);
 		if(user!=null && username.equals(user.getUsername()) && password.equals(user.getPassword())) {
 			request.setAttribute("msg", "Welcome Back to the Book Store");
-			return "redirect:/home";
+			return "redirect:/pages/home";
 		}
 		else {
 			request.setAttribute("msg", "Invalid User");
-			return "login";
+			return "pages/login";
 		}
 	}
 	
 	@GetMapping("/signup")
 	public String showsigin(HttpServletRequest request) {
 		request.setAttribute("action","signup");
-		return "login";
+		return "pages/login";
 	}
 	
 	@PostMapping("/signup")
@@ -66,41 +66,41 @@ public class BookStoreController {
 			UserModel newuser = new UserModel(username,password);
 			userrepo.save(newuser);
 			request.setAttribute("msg","Welcome to Book Store");
-			return "redirect:/home";
+			return "redirect:/pages/home";
 		}
 		else {
 			request.setAttribute("msg", "User Already exist");
-			return "login";
+			return "pages/login";
 		}
 	}
 	
 	@GetMapping("/home")
 	public String home() {
-		return "home";
+		return "pages/home";
 	}
 	
 	@GetMapping("/books")
 	public String showbooks(HttpServletRequest request) {
 		List<BookStoreModel> bookList = repo.findAll();
 		request.setAttribute("books", bookList);
-		return "books";
+		return "pages/books";
 	}
 	
 	@GetMapping("/add")
 	public String showform() {
-		return "form";
+		return "pages/form";
 	}
 	
 	@PostMapping("/add")
 	public String addBook(@ModelAttribute BookStoreModel book,HttpServletRequest request) {
 		repo.save(book);
 		request.setAttribute("msg","Book Added Successfully");
-		return "form";
+		return "pages/form";
 	}
 	
 	@GetMapping("/delete")
 	public String showdelete() {
-		return "deleteBook";
+		return "pages/deleteBook";
 	}
 	
 	@PostMapping("/delete")
@@ -119,13 +119,13 @@ public class BookStoreController {
 			message = "Invalid Input";
 		}
 		request.setAttribute("msg", message);
-		return "deleteBook";
+		return "pages/deleteBook";
 	}
 	
 	@GetMapping("/sell")
 	public String showsell(HttpServletRequest request) {
 		request.setAttribute("action","sell");
-		return "updateBook";
+		return "pages/updateBook";
 	}
 	
 	@PostMapping("/sell")
@@ -152,13 +152,13 @@ public class BookStoreController {
 			message="Invalid Id";
 		}
 		request.setAttribute("msg", message);
-		return "updateBook";
+		return "pages/updateBook";
 	}
 	
 	@GetMapping("/buy")
 	public String showbuy(HttpServletRequest request) {
 		request.setAttribute("action","buy");
-		return "updateBook";
+		return "pages/updateBook";
 	}
 	
 	@PostMapping("/buy")
@@ -179,42 +179,12 @@ public class BookStoreController {
 			message="Invalid Id";
 		}
 		request.setAttribute("msg", message);
-		return "updateBook";
+		return "pages/updateBook";
 	}
 	
 	@GetMapping("/logout")
 	public String logout() {
-		return "redirect:/login";
+		return "redirect:/pages/login";
 	}
-	
-	/*//without database
-	List<BookStoreModel> books = new ArrayList<>();
-	
-	@PostMapping
-	public String addBook(@RequestBody BookStoreModel book) {
-		books.add(book);
-		return "Book added to the store";
-	}
-	
-	@GetMapping
-	public List<BookStoreModel> getBooks(){
-		return books;
-	}
-	
-	@PostMapping("/buy/{id}")
-	public String buyBook(@PathVariable int id) {
-		for(BookStoreModel book : books) {
-			if(book.getId() == id) {
-				if(book.getQuantity() > 0) {
-					book.setQuantity(book.getQuantity()-1);
-					return "Book purchase successful!";
-				}
-				else {
-					return "Book out of stock";
-				}
-			}
-		}
-		return "Book Not Found";
-	}*/
 	
 }
